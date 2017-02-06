@@ -8,6 +8,7 @@ set background=dark
 set nocompatible
 
 filetype off
+execute pathogen#infect()
 
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
@@ -35,12 +36,16 @@ Plugin 'vim-scripts/The-NERD-Commenter'
 " indent guides
 let g:indent_guides_guide_size = 1
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'bling/vim-airline'
 " indent guides shortcut
 map <silent><F7>  <leader>ig
-
 "把 F8 映射到 启动NERDTree插件
 map <F8> :NERDTreeToggle<CR>
 autocmd VimEnter * NERDTree
+wincmd w
+autocmd VimEnter * wincmd w
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd VimEnter * TagbarToggle
 " coffeescript
 Plugin 'kchmck/vim-coffee-script'
 " basic dependence
@@ -279,3 +284,12 @@ endfunction
 
 "add zwl
 inoremap jk <ESC>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0

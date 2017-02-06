@@ -1,1 +1,10 @@
-set nu
+execute pathogen#infect()
+syntax on  
+set number  
+set tabstop=4  
+set softtabstop=4  
+set shiftwidth=4  
+set expandtab 
+filetype plugin on
+let g:pydiction_location ='~/.vim/tools/pydiction/complete-dict'
+let g:pydiction_menu_height = 20
